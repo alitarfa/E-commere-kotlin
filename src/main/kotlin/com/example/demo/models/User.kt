@@ -6,12 +6,14 @@ import javax.persistence.*
 data class User(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long = 0,
-        val firstName: String = "",
-        val lastName: String = "",
-        val numberPhone: Long = 0,
-        val password: String = "",
+        var id: Long? = null,
+        var firstName: String = "",
+        var lastName: String = "",
+        @JoinColumn(unique = true)
+        var numberPhone: Long = 0,
+        var password: String? = null,
         @OneToOne
         @JoinColumn(name = "address_id")
-        val address: Address? = null
+        var address: Address? = null,
+        var userType: UserType? = null
 )
