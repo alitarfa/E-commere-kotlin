@@ -27,6 +27,6 @@ class UserService(private val userRepository: UserRepository) {
                     }
                 }
                 .let(Optional<User>::get)
-                .let { userRepository.save(it) }
+                .let(userRepository::save)
     }
 }
