@@ -2,7 +2,7 @@ package com.example.demo.services
 
 import com.example.demo.models.User
 import com.example.demo.repositories.UserRepository
-import com.example.demo.utils.UserException
+import com.example.demo.utils.exceptions.ApplicationException
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -11,7 +11,7 @@ class UserService(private val userRepository: UserRepository) {
 
     fun registerUser(user: User): User {
         return userRepository.findByNumberPhone(user.numberPhone)
-                ?.let { throw UserException("error.user.phone.duplication") }
+                ?.let { throw ApplicationException("error.user.phone.duplication") }
                 ?: return userRepository.save(user)
     }
 

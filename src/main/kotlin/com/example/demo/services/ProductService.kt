@@ -2,8 +2,8 @@ package com.example.demo.services
 
 import com.example.demo.models.Product
 import com.example.demo.repositories.ProductRepository
+import com.example.demo.utils.exceptions.ApplicationException
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 class ProductService(private val productRepository: ProductRepository) {
@@ -17,14 +17,16 @@ class ProductService(private val productRepository: ProductRepository) {
     fun update(product: Product): Product {
         return productRepository.findById(product.id)
                 .map {
-                    with(it) {
+                    with(product) {
                         it.name = name
                         it.description = description
                         it.price = price
-                        it
+                        productRepository.save(it)
                     }
-                }
-                .let(Optional<Product>::get)
-                .let(productRepository::save)
+                }.orElseThrow { throw ApplicationException("error.product.notfound") }
+    }
+
+    fun delete(id: Long) {
+        productRepository.deleteById(id)
     }
 }

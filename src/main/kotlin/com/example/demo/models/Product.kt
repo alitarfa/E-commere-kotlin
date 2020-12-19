@@ -12,5 +12,7 @@ data class Product(
         var price: Float = 0F,
         var video: String = "",
         @OneToMany
-        var productDetails: List<ProductDetails> = listOf()
+        var productDetails: List<ProductDetails> = listOf(),
+        @ElementCollection
+        var images: List<String> = emptyList()
 )

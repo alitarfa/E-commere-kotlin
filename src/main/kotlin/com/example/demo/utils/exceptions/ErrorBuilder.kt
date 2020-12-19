@@ -1,4 +1,4 @@
-package com.example.demo.utils
+package com.example.demo.utils.exceptions
 
 import org.springframework.http.HttpStatus
 import java.time.LocalDateTime
