@@ -4,9 +4,7 @@ import com.example.demo.models.User
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-class CustomUserDetails : User, UserDetails {
-
-    constructor(user: User) : super(user)
+class CustomUserDetails(username: String, password: String) : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         TODO("Not yet implemented")
