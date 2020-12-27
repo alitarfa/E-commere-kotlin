@@ -23,10 +23,9 @@ class UserService(private val userRepository: UserRepository) {
                         it.lastName = lastName;
                         it.address = address
                         it.numberPhone = numberPhone
-                        it
+                        userRepository.save(it)
                     }
                 }
-                .let(Optional<User>::get)
-                .let(userRepository::save)
+                .orElseThrow { throw ApplicationException("error.user.notfound") }
     }
 }

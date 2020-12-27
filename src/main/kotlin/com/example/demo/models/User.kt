@@ -3,7 +3,7 @@ package com.example.demo.models
 import javax.persistence.*
 
 @Entity
-data class User(
+open class User(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Long? = null,
@@ -11,7 +11,7 @@ data class User(
         var lastName: String = "",
         @JoinColumn(unique = true)
         var numberPhone: Long = 0,
-        var password: String? = null,
+        var pass: String? = null,
         @OneToOne
         @JoinColumn(name = "address_id")
         var address: Address? = null,
